@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MainProkect</string>
+    <string name="reset_button_text">Сброс</string>
+    <string name="decrease_button">-</string>
+    <string name="increase_button">+</string>
+    <string name="result_text_button">0</string>
+    <string name="place_text">0\n</string>
 </resources>

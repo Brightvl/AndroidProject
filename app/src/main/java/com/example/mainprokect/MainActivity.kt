@@ -1,15 +1,20 @@
 package com.example.mainprokect
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    private var currentValue: Int = 0
+    private var currentValue: Int = 45
     private lateinit var counterTextView: TextView
+
+
+    private lateinit var buttonReset: Button
     private lateinit var resultText: TextView
 
     @SuppressLint("MissingInflatedId")
@@ -17,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val buttonReset: Button = findViewById(R.id.buttonReset)
+        buttonReset = findViewById(R.id.buttonReset)
 
         resultText = findViewById(R.id.resultText)
 
@@ -61,13 +66,26 @@ class MainActivity : AppCompatActivity() {
         checkNumber()
     }
 
+    @SuppressLint("SetTextI18n")
     fun checkNumber() {
-        if (currentValue == 0) {
-            resultText.text = "Все места свободны"
-        } else if (currentValue in 1..49) {
-            resultText.text = "Осталось мест: ${50 - currentValue}"
-        } else if (currentValue == 50) {
-            resultText.text = "Пассажиров слижком много"
+        if (currentValue in 0..49) {
+            buttonReset.visibility = View.GONE
+        } else {
+            buttonReset.visibility = View.VISIBLE
+        }
+        when (currentValue) {
+            0 -> {
+                resultText.text = "Все места свободны"
+                resultText.setTextColor(Color.GREEN)
+            }
+            in 1..49 -> {
+                resultText.text = "Осталось мест: ${50 - currentValue}"
+                resultText.setTextColor(Color.BLACK)
+            }
+            50 -> {
+                resultText.text = "Пассажиров слижком много"
+                resultText.setTextColor(Color.RED)
+            }
         }
     }
 }
